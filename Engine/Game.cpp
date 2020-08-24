@@ -41,20 +41,51 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	ball.Update();
-	ball.BoundaryCheck(gfx);
-	ball.IsColliding(paddleP1);
-	ball.IsColliding(paddleP2);
-	paddleP2.BoundaryCheck(gfx);
-	paddleP2.UpdateP2(wnd);
-	paddleP1.BoundaryCheck(gfx);
-	paddleP1.UpdateP1(wnd);
-	
+	if (isGameStart && !isGameOver)
+	{
+		ball.Update();
+		ball.BoundaryCheck(gfx);
+		ball.IsColliding(paddleP1);
+		ball.IsColliding(paddleP2);
+		paddleP2.BoundaryCheck(gfx);
+		paddleP2.UpdateP2(wnd);
+		paddleP1.BoundaryCheck(gfx);
+		paddleP1.UpdateP1(wnd);
+	}
 }
 
 void Game::ComposeFrame()
 {
-	ball.Draw(gfx);
-	paddleP1.Draw(gfx);
-	paddleP2.Draw(gfx);
+	if (isGameStart)
+	{
+		if (ball.GetX() >= 1 && ball.GetX() + ball.GetWidth() <= gfx.ScreenWidth - 1)
+		{
+			ball.Draw(gfx);
+		}
+		else
+		{
+			if (ball.GetX() <= 1)
+			{
+				score2++;
+			}
+			else if(ball.GetX() + ball.GetWidth() >= gfx.ScreenWidth - 1)
+			{
+				score1++;
+			}
+
+			ball.Respawn(gfx);
+		}
+
+		paddleP1.Draw(gfx);
+		paddleP2.Draw(gfx);
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_RETURN))
+	{
+		isGameStart = true;
+	}
+
+	if (score1 == 5 || score2 == 5)
+	{
+		isGameOver = true;
+	}
 }

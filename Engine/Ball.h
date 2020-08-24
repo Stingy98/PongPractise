@@ -16,6 +16,9 @@ public:
 	void Draw(Graphics& gfx);
 	void IsColliding(Paddle& paddle);
 	void BoundaryCheck(Graphics& gfx);
+	int GetX();
+	int GetWidth();
+	void Respawn(Graphics& gfx);
 
 private:
 	int x;

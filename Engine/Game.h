@@ -45,6 +45,10 @@ private:
 	Paddle paddleP1;
 	Paddle paddleP2;
 	Ball ball;
+	bool isGameOver = false;
+	bool isGameStart = false;
+	int score1 = 0;
+	int score2 = 0;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

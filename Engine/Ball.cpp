@@ -34,8 +34,27 @@ void Ball::BoundaryCheck(Graphics& gfx)
 		vy = -vy;
 	}
 
-	if (x + width >= gfx.ScreenWidth - 1 || x <= 1)
-	{
-		vx = -vx;
-	}
+	//if (x + width >= gfx.ScreenWidth - 1 || x <= 1)
+	//{
+	//	vx = -vx;
+	//}
+}
+
+void Ball::Respawn(Graphics& gfx)
+{
+	x = 350;
+	y = 250;
+	vx = 2;
+	vy = 2;
+	Draw(gfx);
+}
+
+int Ball::GetX()
+{
+	return x;
+}
+
+int Ball::GetWidth()
+{
+	return width;
 }
