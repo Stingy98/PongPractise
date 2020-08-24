@@ -23,6 +23,8 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Paddle.h"
+#include "Ball.h"
 
 class Game
 {
@@ -40,6 +42,9 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	Paddle paddleP1;
+	Paddle paddleP2;
+	Ball ball;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

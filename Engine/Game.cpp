@@ -24,7 +24,10 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	paddleP1(30, ((gfx.ScreenHeight) / 2)),
+	paddleP2(gfx.ScreenWidth - 30, ((gfx.ScreenHeight) / 2)),
+	ball(200,200)
 {
 }
 
