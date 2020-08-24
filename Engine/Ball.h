@@ -1,6 +1,6 @@
 #pragma once
 #include "Graphics.h"
-#include <Windows.h>
+#include "Paddle.h"
 
 class Ball
 {
@@ -14,7 +14,7 @@ public:
 
 	void Update();
 	void Draw(Graphics& gfx);
-	void IsColliding();
+	void IsColliding(Paddle& paddle);
 	void BoundaryCheck(Graphics& gfx);
 
 private:

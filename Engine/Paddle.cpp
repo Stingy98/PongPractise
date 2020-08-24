@@ -1,26 +1,38 @@
 #include "Paddle.h"
 
-void Paddle::Update(MainWindow& wnd)
+void Paddle::UpdateP2(MainWindow& wnd)
 {
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y -= 3;
+		y -= speed;
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += 3;
+		y += speed;
+	}
+}
+
+void Paddle::UpdateP1(MainWindow& wnd)
+{
+	if (wnd.kbd.KeyIsPressed('W'))
+	{
+		y -= speed;
+	}
+	else if (wnd.kbd.KeyIsPressed('S'))
+	{
+		y += speed;
 	}
 }
 
 void Paddle::BoundaryCheck(Graphics& gfx)
 {
-	if (y <= 1)
+	if (y <= 3)
 	{
-		y = 1;
+		y = 3;
 	}
-	if (y + height >= gfx.ScreenHeight - 1)
+	if (y + height >= gfx.ScreenHeight - 3)
 	{
-		y = gfx.ScreenHeight - 1 - height;
+		y = gfx.ScreenHeight - 3 - height;
 	}
 }
 
@@ -33,4 +45,24 @@ void Paddle::Draw(Graphics& gfx)
 			gfx.PutPixel(i, j, Colors::White);
 		}
 	}
+}
+
+int Paddle::GetX()
+{
+	return x;
+}
+
+int Paddle::GetY()
+{
+	return y;
+}
+
+int Paddle::GetWidth()
+{
+	return width;
+}
+
+int Paddle::GetHeight()
+{
+	return height;
 }

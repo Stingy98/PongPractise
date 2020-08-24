@@ -18,10 +18,13 @@ void Ball::Draw(Graphics& gfx)
 	
 }
 
-
-void Ball::IsColliding()
+void Ball::IsColliding(Paddle& paddle)
 {
-
+	if ((x == paddle.GetX() + paddle.GetWidth() && y > paddle.GetY() && y < paddle.GetY() + paddle.GetHeight())
+		|| x + width == paddle.GetX() && y > paddle.GetY() && y < paddle.GetY() + paddle.GetHeight())
+	{
+		vx = -vx;
+	}
 }
 
 void Ball::BoundaryCheck(Graphics& gfx)

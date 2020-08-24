@@ -43,8 +43,13 @@ void Game::UpdateModel()
 {
 	ball.Update();
 	ball.BoundaryCheck(gfx);
+	ball.IsColliding(paddleP1);
+	ball.IsColliding(paddleP2);
+	paddleP2.BoundaryCheck(gfx);
+	paddleP2.UpdateP2(wnd);
 	paddleP1.BoundaryCheck(gfx);
-	paddleP1.Update(wnd);
+	paddleP1.UpdateP1(wnd);
+	
 }
 
 void Game::ComposeFrame()
