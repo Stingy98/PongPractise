@@ -1,4 +1,6 @@
 #pragma once
+#include "Graphics.h"
+#include "MainWindow.h"
 
 class Paddle
 {
@@ -10,13 +12,13 @@ public:
 	{
 	}
 
-	void Update();
-	void BoundaryCheck();
-	void Draw();
+	void Update(MainWindow& wnd);
+	void BoundaryCheck(Graphics& gfx);
+	void Draw(Graphics& gfx);
 
 private:
 	int x;
 	int y;
-	static constexpr int width = 4;
-	static constexpr int height = 40;
+	static constexpr int width = 10;
+	static constexpr int height = 60;
 };

@@ -27,7 +27,7 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	paddleP1(30, ((gfx.ScreenHeight) / 2)),
 	paddleP2(gfx.ScreenWidth - 30, ((gfx.ScreenHeight) / 2)),
-	ball(200,200)
+	ball(350,250)
 {
 }
 
@@ -41,8 +41,15 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	ball.Update();
+	ball.BoundaryCheck(gfx);
+	paddleP1.BoundaryCheck(gfx);
+	paddleP1.Update(wnd);
 }
 
 void Game::ComposeFrame()
 {
+	ball.Draw(gfx);
+	paddleP1.Draw(gfx);
+	paddleP2.Draw(gfx);
 }
