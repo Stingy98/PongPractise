@@ -1,24 +1,24 @@
 #include "Paddle.h"
 
-void Paddle::UpdateP2(MainWindow& wnd)
+void Paddle::UpdateP2(Keyboard& kbd)
 {
-	if (wnd.kbd.KeyIsPressed(VK_UP))
+	if (kbd.KeyIsPressed(VK_UP))
 	{
 		y -= speed;
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
 		y += speed;
 	}
 }
 
-void Paddle::UpdateP1(MainWindow& wnd)
+void Paddle::UpdateP1(Keyboard& kbd)
 {
-	if (wnd.kbd.KeyIsPressed('W'))
+	if (kbd.KeyIsPressed('W'))
 	{
 		y -= speed;
 	}
-	else if (wnd.kbd.KeyIsPressed('S'))
+	else if (kbd.KeyIsPressed('S'))
 	{
 		y += speed;
 	}

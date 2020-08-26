@@ -1,6 +1,6 @@
 #pragma once
 #include "Graphics.h"
-#include "MainWindow.h"
+#include "Keyboard.h"
 
 class Paddle
 {
@@ -12,8 +12,8 @@ public:
 	{
 	}
 
-	void UpdateP1(MainWindow& wnd);
-	void UpdateP2(MainWindow& wnd);
+	void UpdateP1(Keyboard& kbd);
+	void UpdateP2(Keyboard& kbd);
 	void BoundaryCheck(Graphics& gfx);
 	void Draw(Graphics& gfx);
 	int GetX();

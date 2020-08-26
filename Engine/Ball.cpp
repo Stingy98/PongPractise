@@ -15,13 +15,21 @@ void Ball::Draw(Graphics& gfx)
 			gfx.PutPixel(i, j, Colors::Green);
 		}
 	}
-	
+
 }
 
 void Ball::IsColliding(Paddle& paddle)
 {
-	if ((x == paddle.GetX() + paddle.GetWidth() && y > paddle.GetY() && y < paddle.GetY() + paddle.GetHeight())
-		|| x + width == paddle.GetX() && y > paddle.GetY() && y < paddle.GetY() + paddle.GetHeight())
+	if ((x == paddle.GetX() + paddle.GetWidth() &&
+		y > paddle.GetY() &&
+		y < paddle.GetY() + paddle.GetHeight()))
+	{
+		vx = -vx;
+	}
+
+	if (x + width == paddle.GetX() &&
+		y > paddle.GetY() &&
+		y < paddle.GetY() + paddle.GetHeight())
 	{
 		vx = -vx;
 	}
