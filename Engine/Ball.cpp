@@ -2,15 +2,15 @@
 
 void Ball::Update()
 {
-	x += vx;
-	y += vy;
+	ballPos.x += ballVel.x;
+	ballPos.y += ballVel.y;
 }
 
 void Ball::Draw(Graphics& gfx)
 {
-	for (int i = x; i < x + width; i++)
+	for (int i = ballPos.x; i < ballPos.x + width; i++)
 	{
-		for (int j = y; j < y + height; j++)
+		for (int j = ballPos.y; j < ballPos.y + height; j++)
 		{
 			gfx.PutPixel(i, j, Colors::Green);
 		}
@@ -20,26 +20,26 @@ void Ball::Draw(Graphics& gfx)
 
 void Ball::IsColliding(Paddle& paddle)
 {
-	if ((x == paddle.GetX() + paddle.GetWidth() &&
-		y > paddle.GetY() &&
-		y < paddle.GetY() + paddle.GetHeight()))
+	if ((ballPos.x == paddle.GetPos().x + paddle.GetWidth() &&
+		ballPos.y > paddle.GetPos().y &&
+		ballPos.y < paddle.GetPos().y + paddle.GetHeight()))
 	{
-		vx = -vx;
+		ballVel.x = -ballVel.x;
 	}
 
-	if (x + width == paddle.GetX() &&
-		y > paddle.GetY() &&
-		y < paddle.GetY() + paddle.GetHeight())
+	if (ballPos.x + width == paddle.GetPos().x &&
+		ballPos.y > paddle.GetPos().y &&
+		ballPos.y < paddle.GetPos().y + paddle.GetHeight())
 	{
-		vx = -vx;
+		ballVel.x = -ballVel.x;
 	}
 }
 
 void Ball::BoundaryCheck(Graphics& gfx)
 {
-	if (y + height >= gfx.ScreenHeight -1 || y <= 1)
+	if (ballPos.y + height >= gfx.ScreenHeight -1 || ballPos.y <= 1)
 	{
-		vy = -vy;
+		ballVel.y = -ballVel.y;
 	}
 
 	//if (x + width >= gfx.ScreenWidth - 1 || x <= 1)
@@ -48,21 +48,22 @@ void Ball::BoundaryCheck(Graphics& gfx)
 	//}
 }
 
+Vec2 Ball::GetPos() const
+{
+	return ballPos;
+}
+
 void Ball::Respawn(Graphics& gfx)
 {
-	x = 350;
-	y = 250;
-	vx = 2;
-	vy = 2;
+	ballPos.x = 350;
+	ballPos.y = 250;
+	ballVel.x = 2;
+	ballVel.y = 2;
 	Draw(gfx);
 }
 
-int Ball::GetX()
-{
-	return x;
-}
 
-int Ball::GetWidth()
+int Ball::GetWidth() const
 {
 	return width;
 }

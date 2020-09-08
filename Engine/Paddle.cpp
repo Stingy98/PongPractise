@@ -4,11 +4,11 @@ void Paddle::UpdateP2(Keyboard& kbd)
 {
 	if (kbd.KeyIsPressed(VK_UP))
 	{
-		y -= speed;
+		paddlePos.y -= speed;
 	}
 	else if (kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += speed;
+		paddlePos.y += speed;
 	}
 }
 
@@ -16,53 +16,48 @@ void Paddle::UpdateP1(Keyboard& kbd)
 {
 	if (kbd.KeyIsPressed('W'))
 	{
-		y -= speed;
+		paddlePos.y -= speed;
 	}
 	else if (kbd.KeyIsPressed('S'))
 	{
-		y += speed;
+		paddlePos.y += speed;
 	}
 }
 
 void Paddle::BoundaryCheck(Graphics& gfx)
 {
-	if (y <= 3)
+	if (paddlePos.y <= 3)
 	{
-		y = 3;
+		paddlePos.y = 3;
 	}
-	if (y + height >= gfx.ScreenHeight - 3)
+	if (paddlePos.y + height >= gfx.ScreenHeight - 3)
 	{
-		y = gfx.ScreenHeight - 3 - height;
+		paddlePos.y = gfx.ScreenHeight - 3 - height;
 	}
 }
 
 void Paddle::Draw(Graphics& gfx)
 {
-	for (int i = x; i < x + width; i++)
+	for (int i = paddlePos.x; i < paddlePos.x + width; i++)
 	{
-		for (int j = y; j < y + height; j++)
+		for (int j = paddlePos.y; j < paddlePos.y + height; j++)
 		{
 			gfx.PutPixel(i, j, Colors::White);
 		}
 	}
 }
 
-int Paddle::GetX()
+Vec2 Paddle::GetPos() const
 {
-	return x;
+	return paddlePos;
 }
 
-int Paddle::GetY()
-{
-	return y;
-}
-
-int Paddle::GetWidth()
+int Paddle::GetWidth() const
 {
 	return width;
 }
 
-int Paddle::GetHeight()
+int Paddle::GetHeight() const
 {
 	return height;
 }

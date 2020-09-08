@@ -25,9 +25,9 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	paddleP1(30, ((gfx.ScreenHeight) / 2)),
-	paddleP2(gfx.ScreenWidth - 30, ((gfx.ScreenHeight) / 2)),
-	ball(350,250)
+	paddleP1(Vec2(30.0f, (float)((gfx.ScreenHeight) / 2))),
+	paddleP2(Vec2(float(gfx.ScreenWidth - 30), (float)((gfx.ScreenHeight) / 2))),
+	ball(Vec2(350.0f,250.0f), Vec2(2.0f,2.0f))
 {
 }
 
@@ -58,17 +58,17 @@ void Game::ComposeFrame()
 {
 	if (isGameStart)
 	{
-		if (ball.GetX() >= 1 && ball.GetX() + ball.GetWidth() <= gfx.ScreenWidth - 1)
+		if (ball.GetPos().x >= 1 && ball.GetPos().x + ball.GetWidth() <= gfx.ScreenWidth - 1)
 		{
 			ball.Draw(gfx);
 		}
 		else
 		{
-			if (ball.GetX() <= 1)
+			if (ball.GetPos().x <= 1)
 			{
 				score2++;
 			}
-			else if(ball.GetX() + ball.GetWidth() >= gfx.ScreenWidth - 1)
+			else if(ball.GetPos().x + ball.GetWidth() >= gfx.ScreenWidth - 1)
 			{
 				score1++;
 			}
